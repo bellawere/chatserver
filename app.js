@@ -43,6 +43,6 @@ io.on("connection", function(user){
     });
 });
 
-server.listen(port, () => {
+server.listen((port || process.env.PORT), () => {
     console.log('Servidor rodando na porta ' + port)
 });
