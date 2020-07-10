@@ -18,5 +18,8 @@
     "thistudio"
   ],
   "author": "Gabriel Bellawere",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node" : "13.13.0"
+  }
 }
