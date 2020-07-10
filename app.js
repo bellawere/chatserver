@@ -3,7 +3,7 @@ const server = require('http').Server(app);
 const port = 5000;
 
 const io = require('socket.io')(server, {
-    path:""
+    path:"/"
 });
 
 app.get('/', function(req, res){
