@@ -1,10 +1,13 @@
 const app = require('express')();
+const cors = require('cors');
 const server = require('http').Server(app);
 const port = 3000;
 
 const io = require('socket.io')(server, {
     path:"/"
 });
+
+app.use(cors());
 
 app.get('/', function(req, res){
     res.send('Servidor ativo');
