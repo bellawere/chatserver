@@ -28,7 +28,12 @@ io.on("connection", function(user){
             console.log("Usuário " + nome + " entrou");
             usuarios[user.id] = nome;
             user.emit("update", "Bem-vindo ao Chat");
-            io.emit("update",nome + " entrou no servidor");
+            var data = {
+                nome: "servidor",
+                mensagem: nome + " entrou no servidor"
+            }
+            chat.push(data);
+            io.emit("chat",chat);
         }
 
     });
@@ -41,6 +46,10 @@ io.on("connection", function(user){
         }
         chat.push(data);
         io.emit("chat", chat);
+
+        while(chat.length > 100){
+            chat.pop();
+        }
     });
 
     user.on("disconnect", function(){
