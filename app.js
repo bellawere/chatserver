@@ -16,8 +16,24 @@ app.get('/', function(req, res){
 var usuarios = {};
 var chat = [];
 
+var quizdata = {};
+var resultado = [];
+var contagem = [];
+var total = "";
+
 app.get('/ativos', function(req, res){
     res.json(usuarios);
+});
+
+app.get("/result", (req2, res2) =>{
+
+    resultado.forEach((x) => {contagem[x] = (contagem[x] || 0)+1; });
+    total = resultado.length;
+
+    res2.json({
+        contagem: contagem,
+        total: total
+    });
 });
 
 io.on("connection", function(user){
@@ -66,6 +82,16 @@ io.on("connection", function(user){
             delete usuarios[user.id];
         }
     });
+
+    user.on("quiz", function(data){
+        quizdata = data;
+        io.emit("quiz", data);
+    });
+    
+    user.on("answer", function(data){
+        resultado.push(data);
+    });
+    
 });
 
 server.listen(port, () => {
