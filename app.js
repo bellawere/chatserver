@@ -29,7 +29,7 @@ io.on("connection", function(user){
             usuarios[user.id] = nome;
             user.emit("update", "Bem-vindo ao Chat");
             var data = {
-                nome: "servidor",
+                nome: "Sistema",
                 mensagem: nome + " entrou no servidor"
             }
             chat.push(data);
