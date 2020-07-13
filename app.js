@@ -47,6 +47,8 @@ io.on("connection", function(user){
         chat.push(data);
         io.emit("chat", chat);
 
+        console.log(chat.length);
+
         while(chat.length > 100){
             chat.pop();
         }
