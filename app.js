@@ -24,7 +24,7 @@ io.on("connection", function(user){
     
     user.on("join", function(nome){
         
-        if(usuarios[user.id] !== "undefined"){
+        if(usuarios[user.id] !== "undefined" && usuarios[user.id] != null){
             console.log("Usuário " + nome + " entrou");
             usuarios[user.id] = nome;
             user.emit("update", "Bem-vindo ao Chat");
@@ -55,7 +55,7 @@ io.on("connection", function(user){
     });
 
     user.on("disconnect", function(){
-        if(usuarios[user.id] !== "undefined"){
+        if(usuarios[user.id] !== "undefined" && usuarios[user.id] != null){
             console.log(usuarios[user.id] + " foi desconectado");
             var data = {
                 nome: "Sistema",
