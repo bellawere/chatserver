@@ -57,7 +57,12 @@ io.on("connection", function(user){
     user.on("disconnect", function(){
         if(usuarios[user.id] !== "undefined"){
             console.log(usuarios[user.id] + " foi desconectado");
-            io.emit("update", usuarios[user.id] + " saiu");
+            var data = {
+                nome: "Sistema",
+                mensagem: nome + " saiu do servidor"
+            }
+            chat.push(data);
+            io.emit("chat",chat);
             delete usuarios[user.id];
         }
     });
