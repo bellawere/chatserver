@@ -50,7 +50,7 @@ io.on("connection", function(user){
         console.log(chat.length);
 
         while(chat.length > 100){
-            chat.pop();
+            chat = chat.slice(1);
         }
     });
 
