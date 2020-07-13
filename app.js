@@ -14,6 +14,7 @@ app.get('/', function(req, res){
 });
 
 var usuarios = {};
+var chat = [];
 
 app.get('/ativos', function(req, res){
     res.json(usuarios);
@@ -34,7 +35,12 @@ io.on("connection", function(user){
 
     user.on("send", function(msg){
         console.log("Mensagem de " + usuarios[user.id] + ": " + msg);
-        io.emit("chat", usuarios[user.id], msg);
+        var data = {
+            nome:usuarios[user.id],
+            mensagem:msg
+        }
+        chat.push(data);
+        io.emit("chat", chat);
     });
 
     user.on("disconnect", function(){
