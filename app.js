@@ -28,7 +28,7 @@ io.on("connection", function(user){
             console.log("Usuário " + nome + " entrou");
             usuarios[user.id] = nome;
             user.emit("update", "Bem-vindo ao Chat");
-            user.broadcast.emit("update",nome + " entrou no servidor");
+            io.emit("update",nome + " entrou no servidor");
         }
 
     });

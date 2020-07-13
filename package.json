@@ -20,6 +20,6 @@
   "author": "Gabriel Bellawere",
   "license": "ISC",
   "engines": {
-    "node" : "13.13.0"
+    "node": "13.13.0"
   }
 }
