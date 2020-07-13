@@ -59,7 +59,7 @@ io.on("connection", function(user){
             console.log(usuarios[user.id] + " foi desconectado");
             var data = {
                 nome: "Sistema",
-                mensagem: nome + " saiu do servidor"
+                mensagem: usuarios[user.id] + " saiu do servidor"
             }
             chat.push(data);
             io.emit("chat",chat);
