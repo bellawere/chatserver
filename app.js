@@ -85,11 +85,25 @@ io.on("connection", function(user){
 
     user.on("quiz", function(data){
         quizdata = data;
+        resultado = [];
+        contagem = [];
+        total = "";
         io.emit("quiz", data);
     });
     
     user.on("answer", function(data){
         resultado.push(data);
+    });
+
+    user.on("result", function(){
+        resultado.forEach((x) => {contagem[x] = (contagem[x] || 0)+1; });
+        total = resultado.length;
+        var toEmit = {
+            contagem:contagem,
+            result: resultado,
+            total:total
+        }
+        io.emit("result",toEmit);
     });
     
 });
