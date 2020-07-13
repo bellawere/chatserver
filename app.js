@@ -24,7 +24,7 @@ io.on("connection", function(user){
     
     user.on("join", function(nome){
         
-        if(usuarios[user.id] !== "undefined" && usuarios[user.id] != null){
+        if(usuarios[user.id] !== "undefined"){
             console.log("Usuário " + nome + " entrou");
             usuarios[user.id] = nome;
             user.emit("update", "Bem-vindo ao Chat");
