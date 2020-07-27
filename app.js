@@ -16,7 +16,7 @@ app.get('/', function(req, res){
 var usuarios = {};
 var chat = [];
 
-var bd = {};
+var bd = [];
 
 var quizdata = {};
 var resultado = [];
