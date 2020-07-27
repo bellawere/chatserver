@@ -16,13 +16,21 @@ app.get('/', function(req, res){
 var usuarios = {};
 var chat = [];
 
+var bd = {};
+
 var quizdata = {};
 var resultado = [];
 var contagem = [];
 var total = "";
 
+var url = "";
+
 app.get('/ativos', function(req, res){
     res.json(usuarios);
+});
+
+app.get('/banco', function(req,res){
+    res.json(bd);
 });
 
 app.get("/result", (req2, res2) =>{
@@ -85,11 +93,16 @@ io.on("connection", function(user){
 
     user.on("quiz", function(data){
         quizdata = data;
+        io.emit("quiz", data);
+    });
+
+    user.on("reset", function(){
+        var dados = {quizdata,resultado,contagem,total};
+        bd.push(dados);
         resultado = [];
         contagem = [];
         total = "";
-        io.emit("quiz", data);
-    });
+    })
     
     user.on("answer", function(data){
         resultado.push(data);
@@ -105,6 +118,19 @@ io.on("connection", function(user){
         }
         io.emit("result",toEmit);
     });
+
+    user.on("video", function(){
+        io.emit("videourl",url);
+    });
+
+    user.on("videourl", function(data){
+        url = data;
+        io.emit("videourl", url);
+    });
+
+    user.on("refresh", function(){
+        io.emit("refresh",1);
+    })
     
 });
 
